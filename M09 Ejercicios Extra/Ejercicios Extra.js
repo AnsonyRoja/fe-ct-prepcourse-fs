@@ -6,6 +6,18 @@ function deObjetoAarray(objeto) {
    // Estos elementos debe ser cada par clave:valor del objeto recibido.
    // [EJEMPLO]: {D: 1, B: 2, C: 3} ---> [['D', 1], ['B', 2], ['C', 3]].
    // Tu código:
+
+
+      var arrayNuevo = [];
+
+      for(var clave in objeto){
+
+            arrayNuevo.push([clave,objeto[clave]]);
+
+      }
+
+      return arrayNuevo;
+
 }
 
 function numberOfCharacters(string) {
@@ -14,7 +26,27 @@ function numberOfCharacters(string) {
    // Las letras deben estar en orden alfabético.
    // [EJEMPLO]: "adsjfdsfsfjsdjfhacabcsbajda" ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 }
    // Tu código:
+
+      var objeto ={};
+
+      for(var i = 0; i < string.length; i++){
+
+         if(objeto.hasOwnProperty(string[i])){
+
+                  objeto[string[i]] = objeto[string[i]] + 1;
+                  
+
+         }else{
+            objeto[string[i]] = 1; 
+         }
+      }
+
+   return objeto;
+
+
 }
+
+// console.log(numberOfCharacters('adsjfdsfsfjsdjfhacabcsbajda'));
 
 function capToFront(string) {
    // Recibes un string con algunas letras en mayúscula y otras en minúscula.
@@ -22,26 +54,93 @@ function capToFront(string) {
    // Retornar el string.
    // [EJEMPLO]: soyHENRY ---> HENRYsoy
    // Tu código:
+
+      var mayusculas = "";
+      var minusculas = "";
+
+         for(var i = 0; i < string.length; i++){
+
+            if(string[i] === string[i].toLowerCase()){
+
+               minusculas = minusculas + string[i];
+            }else{
+
+
+                  mayusculas = mayusculas + string[i];
+            }
+
+         }
+
+         return mayusculas + minusculas;
+
 }
+
+
+
+
 
 function asAmirror(frase) {
    // Recibes una frase. Tu tarea es retornar un nuevo string en el que el orden de las palabras sea el mismo.
    // La diferencia es que cada palabra estará escrita al inverso.
    // [EJEMPLO]: "The Henry Challenge is close!"  ---> "ehT yrneH egnellahC si !esolc"
    // Tu código:
+
+   var strToArray = frase.split(' ');
+
+   var arrayFinal = strToArray.map((elemento) =>{
+
+            return elemento.split('').reverse().join('');
+
+   });
+
+   return arrayFinal.join(' ');
+
 }
+
+console.log(asAmirror('The Henry Challenge is close!'));
+
 
 function capicua(numero) {
    // Si el número que recibes es capicúa debes retornar el string: "Es capicua".
    // Caso contrario: "No es capicua".
    // Tu código:
+
+   var numString = numero.toString();
+   var resultado = numString.split('').reverse().join('');
+   if(numString === resultado){
+
+      return "Es capicua";
+   }else{
+
+      return "No es capicua";
+   }
 }
+
+
 
 function deleteAbc(string) {
    // Tu tarea es eliminar las letras "a", "b" y "c" del string recibido.
    // Retorna el string sin estas letras.
    // Tu código:
+
+     var difabc = "";
+
+      for(var i = 0; i < string.length;i++){
+
+      if(string[i] === 'a' || string[i] === 'b' || string[i] ==='c'){
+
+         continue;
+      }else{
+         
+            difabc = difabc + string[i];
+      }
+   }
+   return difabc;
+
 }
+
+
+
 
 function sortArray(arrayOfStrings) {
    // Recibes un arreglo de strings.
@@ -49,7 +148,35 @@ function sortArray(arrayOfStrings) {
    // de la longitud de cada string.
    // [EJEMPLO]: ["You", "are", "beautiful", "looking"]  ---> [“You", "are", "looking", "beautiful"]
    // Tu código:
+
+   var cambio = true;
+
+   while(cambio){
+
+         cambio = false;
+
+         for(var i = 0; i < arrayOfStrings.length - 1; i++){
+
+            if(arrayOfStrings[i].length > arrayOfStrings[i+1].length){
+
+                  var aux = arrayOfStrings[i];
+                  arrayOfStrings[i] = arrayOfStrings[i+1];
+                  arrayOfStrings[i+1] = aux;
+                  cambio = true;
+
+            }
+         }
+
+
+
+   }
+
+return arrayOfStrings;
 }
+
+
+console.log(sortArray(['You','are','beautiful','looking']));
+
 
 function buscoInterseccion(array1, array2) {
    // Recibes dos arreglos de números.
@@ -58,7 +185,23 @@ function buscoInterseccion(array1, array2) {
    // Si no tienen elementos en común, retornar un arreglo vacío.
    // [PISTA]: los arreglos no necesariamente tienen la misma longitud.
    // Tu código:
+
+      var coincidencias = [];
+
+      for(var i = 0; i < array1.length; i++){
+
+            for(var i = 0; i <array2.length; i++){
+
+               if(array1[i] === array2[i]){
+
+                  coincidencias.push(array1[i]);
+               }
+            }
+      }
+
+return coincidencias;
 }
+
 
 /*⚠️ NO MODIFIQUES NADA DEBAJO DE ESTO ⚠️*/
 module.exports = {
